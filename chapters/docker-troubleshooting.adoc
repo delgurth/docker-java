@@ -67,10 +67,9 @@ These commands need to be given in the '`kubernetes`' directory.
 
 If you get the following error when creating a docker machine
 
-[source, text]
-----
+```console
 Error creating machine: Error in driver during machine creation: Get https://api.github.com/repos/boot2docker/boot2docker/releases: dial tcp: i/o timeout
-----
+```
 
 Then you need to go to the boot2docker releases page on
 
@@ -78,7 +77,8 @@ https://github.com/boot2docker/boot2docker/releases
 
 And download the latest .iso
 
-After that you can move that iso to the docker cache directory. This is located in `~/.docker/machine/cache` on Mac & Linux and `/Users/yourUserName/.docker/machine/cache` on Windows.
+After that you can move that iso to the docker cache directory. This is located in `~/.docker/machine/cache` on Mac & Linux and
+`/Users/yourUserName/.docker/machine/cache` on Windows.
 
 Issue: https://github.com/docker/machine/issues/2186 is raised so that the docker-machine team can hopefully find a way around this.
 
@@ -105,6 +105,17 @@ This should eliminate any issues you've been experiencing with rate limiting.
 
 === Docker Machine Troubleshooting
 
-https://github.com/docker/machine/blob/master/README.md#troubleshooting[Docker Machine Troubleshooting] section has good tips on what can possibly go wrong with Docker Machine. Look there if your issue is not explained here.
+https://github.com/docker/machine/blob/master/README.md#troubleshooting[Docker Machine Troubleshooting] section has good tips on what
+can possibly go wrong with Docker Machine. Look there if your issue is not explained here.
 
-=== 
+=== Starting up the Kubernetes cluster fails with a connection refused
+
+If you run into the following error after running `./cluster/kube-up.sh` (with the vagrant provider)
+
+```console
+Waiting for each minion to be registered with cloud provider
+error: couldn't read version from server: Get https://10.245.1.2/api: dial tcp 10.245.1.2:443: connection refused
+```
+
+Just try the `./cluster/kube-up.sh` command a few more times until it works.
+

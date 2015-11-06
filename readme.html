@@ -587,6 +587,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_docker_machine_creation_fails_with_an_error_about_dial_tcp_i_o_timeout">Docker machine creation fails with an error about dial tcp: i/o timeout</a></li>
 <li><a href="#__you_may_be_getting_rate_limited_by_github_error_message">&#8220;You may be getting rate limited by Github&#8221; error message</a></li>
 <li><a href="#_docker_machine_troubleshooting">Docker Machine Troubleshooting</a></li>
+<li><a href="#_starting_up_the_kubernetes_cluster_fails_with_a_connection_refused">Starting up the Kubernetes cluster fails with a connection refused</a></li>
 </ul>
 </li>
 <li><a href="#_references">References</a></li>
@@ -5007,7 +5008,7 @@ eval $(docker-machine env &lt;MACHINE_NAME&gt;)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">Error creating machine: Error in driver during machine creation: Get https://api.github.com/repos/boot2docker/boot2docker/releases: dial tcp: i/o timeout</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">Error creating machine: Error in driver during machine creation: Get https://api.github.com/repos/boot2docker/boot2docker/releases: dial tcp: i/o timeout</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5020,7 +5021,8 @@ eval $(docker-machine env &lt;MACHINE_NAME&gt;)</code></pre>
 <p>And download the latest .iso</p>
 </div>
 <div class="paragraph">
-<p>After that you can move that iso to the docker cache directory. This is located in <code>~/.docker/machine/cache</code> on Mac &amp; Linux and <code>/Users/yourUserName/.docker/machine/cache</code> on Windows.</p>
+<p>After that you can move that iso to the docker cache directory. This is located in <code>~/.docker/machine/cache</code> on Mac &amp; Linux and
+<code>/Users/yourUserName/.docker/machine/cache</code> on Windows.</p>
 </div>
 <div class="paragraph">
 <p>Issue: <a href="https://github.com/docker/machine/issues/2186" class="bare">https://github.com/docker/machine/issues/2186</a> is raised so that the docker-machine team can hopefully find a way around this.</p>
@@ -5056,10 +5058,23 @@ token</a> and pass it to Docker Machine using the global <code>--github-api-toke
 <div class="sect2">
 <h3 id="_docker_machine_troubleshooting">Docker Machine Troubleshooting</h3>
 <div class="paragraph">
-<p><a href="https://github.com/docker/machine/blob/master/README.md#troubleshooting">Docker Machine Troubleshooting</a> section has good tips on what can possibly go wrong with Docker Machine. Look there if your issue is not explained here.</p>
+<p><a href="https://github.com/docker/machine/blob/master/README.md#troubleshooting">Docker Machine Troubleshooting</a> section has good tips on what
+can possibly go wrong with Docker Machine. Look there if your issue is not explained here.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_up_the_kubernetes_cluster_fails_with_a_connection_refused">Starting up the Kubernetes cluster fails with a connection refused</h3>
+<div class="paragraph">
+<p>If you run into the following error after running <code>./cluster/kube-up.sh</code> (with the vagrant provider)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">Waiting for each minion to be registered with cloud provider
+error: couldn't read version from server: Get https://10.245.1.2/api: dial tcp 10.245.1.2:443: connection refused</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>===</p>
+<p>Just try the <code>./cluster/kube-up.sh</code> command a few more times until it works.</p>
 </div>
 </div>
 </div>
@@ -5088,7 +5103,7 @@ token</a> and pass it to Docker Machine using the global <code>--github-api-toke
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-11-05 21:45:27 CET
+Last updated 2015-11-06 10:01:44 CET
 </div>
 </div>
 </body>
